@@ -43,7 +43,8 @@ class Application(tk.Frame):
         self.city_entry = tk.Entry(self)
         self.city_entry.grid(row=3, column=1)
 
-        # create a button widget to search the database by flu shot name and city
+        # create a button widget to search the database
+        # by flu shot name and city
         self.search_button = tk.Button(
             self,
             text="Search by Flu Shot and City",
@@ -76,7 +77,8 @@ class Application(tk.Frame):
         conn.close()
 
     def search_database(self):
-        # get the flu shot name and city to search for from the drop-down menus and entry widget
+        # get the flu shot name and city to search for
+        # from the drop-down menus and entry widget
         search_flu_shot = self.flu_shot_var.get()
         search_city = self.city_entry.get()
 
@@ -84,9 +86,11 @@ class Application(tk.Frame):
         conn = sqlite3.connect("Flu_Vaccines_Provider_NC.db")
         c = conn.cursor()
 
-        # execute a SELECT statement to retrieve the rows with the specified flu shot name and city
+        # execute a SELECT statement to retrieve the rows
+        # with the specified flu shot name and city
         c.execute(
-            "SELECT * FROM Vaccines WHERE searchable_name = ? AND city = ? AND in_stock = 'True'",
+            "SELECT * FROM Vaccines WHERE searchable_name = ?"
+            "AND city = ? AND in_stock = 'True'",
             (search_flu_shot, search_city),
         )
         rows = c.fetchall()
