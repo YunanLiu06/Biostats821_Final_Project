@@ -45,7 +45,9 @@ class Application(tk.Frame):
 
         # create a button widget to search the database by flu shot name and city
         self.search_button = tk.Button(
-            self, text="Search by Flu Shot and City", command=self.search_database
+            self,
+            text="Search by Flu Shot and City",
+            command=self.search_database,
         )
         self.search_button.grid(row=4, column=0, columnspan=2)
 

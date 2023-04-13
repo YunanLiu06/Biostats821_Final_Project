@@ -2,7 +2,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.formatOnSave": true,
     "editor.rulers": [
-        79
+        100
     ],
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
