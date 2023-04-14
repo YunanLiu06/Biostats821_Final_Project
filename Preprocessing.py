@@ -101,7 +101,7 @@ def make_database(csv_path: str, db_path: str) -> None:
     city VARCHAR, state VARCHAR, zip VARCHAR, website VARCHAR, 
     pre_sreening_required VARCHAR, insurance_accepted VARCHAR, walkins_accepted VARCHAR, 
     provider_notes VARCHAR, searchable_name VARCHAR, in_stock VARCHAR, 
-    quantity_last_updated VARCHAR, hours VARCHAR)"""
+    quantity_last_updated VARCHAR, latitude VARCHAR, longitude VARCHAR, hours VARCHAR)"""
     )
 
     # insert data into the table
@@ -110,8 +110,8 @@ def make_database(csv_path: str, db_path: str) -> None:
         for line in f:
             vaccines_line = line.strip().split(",")
             cursor.execute(
-                "INSERT INTO Vaccines VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                vaccines_line[0:16],
+                "INSERT INTO Vaccines VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                vaccines_line[0:18],
             )
 
     connection.commit()

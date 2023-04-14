@@ -5,9 +5,7 @@ import sqlite3
 vaccine_data = Preprocessing(
     "/Users/liuxiaoquan/Documents/Vaccines.gov__Flu_vaccinating_provider_locations.csv"
 )
-vaccine_data.drop_columns(
-    ["loc_store_no", "latitude", "longitude", "category", "supply_level"]
-)
+vaccine_data.drop_columns(["loc_store_no", "category", "supply_level"])
 vaccine_data.combine_opening_hours()
 vaccine_data.drop_columns(
     [
