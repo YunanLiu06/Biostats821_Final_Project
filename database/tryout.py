@@ -17,7 +17,7 @@ class Flu_info:
         target_longitude = radians(float(longitude))
 
         location_set = self.cursor.execute(
-            """ SELECT loc_name, loc_admin_street1, loc_admin_city, loc_admin_state, loc_admin_zip, web_address, latitude, longitude
+            """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude
             FROM Vaccines WHERE searchable_name = ?, in_stock = ?""",
             (
                 vaccine_name,
@@ -51,7 +51,7 @@ class Flu_info:
 
     def getLocationByVaccineName(self, vaccine_name: str):
         location_set = self.cursor.execute(
-            """ SELECT loc_name, loc_admin_street1, loc_admin_city, loc_admin_state, loc_admin_zip, web_address, latitude, longitude FROM Vaccines WHERE searchable_name = ?, in_stock = ?""",
+            """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude FROM Vaccines WHERE searchable_name = ? AND in_stock = ?""",
             (
                 vaccine_name,
                 True,
