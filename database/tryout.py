@@ -21,7 +21,7 @@ class Flu_info:
             FROM Vaccines WHERE searchable_name = ?, in_stock = ?""",
             (
                 vaccine_name,
-                True,
+                "True",
             ),
         ).fetchall()
 
@@ -54,14 +54,14 @@ class Flu_info:
             """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude FROM Vaccines WHERE searchable_name = ? AND in_stock = ?""",
             (
                 vaccine_name,
-                True,
+                "True",
             ),
         ).fetchall()
         result_location = []
         for location in location_set:
             result_location.append(location)
 
-        return location
+        return result_location
 
     def getLimitedLocationByVaccineName(self, vaccine_name: str, amount: int):
         location_set = self.getLocationByVaccineName(vaccine_name)
@@ -75,4 +75,5 @@ class Flu_info:
 
 
 testone = Flu_info("Flu_Vaccines_Provider_NC.db")
-testone.getLocationByVaccineName("Flu Shot")
+ll = testone.getLocationByVaccineName("Flu Shot")
+print(ll)
