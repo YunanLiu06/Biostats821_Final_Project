@@ -4,9 +4,9 @@ from tryout import Flu_info
 root = tk.Tk()
 
 tk.Label(root, text="Vaccine Name: ").grid(row=0)
-tk.Label(root, text="Number of locations needed: ").grid(row=1)
-tk.Label(root, text="Latitude of your location: ").grid(row=2)
-tk.Label(root, text="Longitude of your location: ").grid(row=3)
+tk.Label(root, text="Number of locations needed: (Optional)").grid(row=1)
+tk.Label(root, text="Latitude of your location: (Optional)").grid(row=2)
+tk.Label(root, text="Longitude of your location: (Optional)").grid(row=3)
 
 textbox1 = tk.Entry(root)
 textbox2 = tk.Entry(root)
