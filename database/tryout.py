@@ -74,6 +74,6 @@ class Flu_info:
         return location_selected
 
 
-testone = Flu_info("Flu_Vaccines_Provider_NC.db")
-ll = testone.getLocationByVaccineName("Flu Shot")
-print(ll)
+# testone = Flu_info("Flu_Vaccines_Provider_NC.db")
+# ll = testone.getLocationByVaccineName("Flu Shot")
+# print(ll)
