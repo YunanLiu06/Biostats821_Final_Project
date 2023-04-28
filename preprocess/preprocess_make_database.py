@@ -1,9 +1,10 @@
-"""Preprocessing vaccine data and make a database for the vaccine data"""
+"""Preprocessing vaccine data and make a database for the vaccine data."""
 from Preprocessing import Preprocessing, make_database
 import sqlite3
 
 vaccine_data = Preprocessing(
-    "/Users/liuxiaoquan/Documents/Vaccines.gov__Flu_vaccinating_provider_locations.csv"
+    "/Users/liuxiaoquan/Documents/"
+    "Vaccines.gov__Flu_vaccinating_provider_locations.csv"
 )
 vaccine_data.drop_columns(["loc_store_no", "category", "supply_level"])
 vaccine_data.combine_opening_hours()
