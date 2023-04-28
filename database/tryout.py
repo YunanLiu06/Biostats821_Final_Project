@@ -17,8 +17,7 @@ class Flu_info:
         target_longitude = radians(float(longitude))
 
         location_set = self.cursor.execute(
-            """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude
-            FROM Vaccines WHERE searchable_name = ?, in_stock = ?""",
+            """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude FROM Vaccines WHERE searchable_name = ? AND in_stock = ?""",
             (
                 vaccine_name,
                 "True",
@@ -62,9 +61,34 @@ class Flu_info:
             result_location.append(location)
 
         return result_location
+    
+    def getLocationByCityAndVaccineName(self, city: str, vaccine_name: str):
+        location_set = self.cursor.execute(
+            """ SELECT provider_name, street_address1, city, state, zip, website, latitude, longitude FROM Vaccines WHERE searchable_name = ? AND city = ? AND in_stock = ? """,
+            (
+                vaccine_name,
+                city,
+                "True",
+            ),
+        ).fetchall()
+        result_location = []
+        for location in location_set:
+            result_location.append(location)
+
+        return result_location
 
     def getLimitedLocationByVaccineName(self, vaccine_name: str, amount: int):
         location_set = self.getLocationByVaccineName(vaccine_name)
+        location_selected = []
+        for i in range(amount):
+            if i >= len(location_set):
+                break
+            location_selected.append(location_set[i])
+
+        return location_selected
+    
+    def getLimitedLocationByCityAndVaccineName(self, city: str, vaccine_name: str, amount: int):
+        location_set = self.getLocationByCityAndVaccineName(city, vaccine_name)
         location_selected = []
         for i in range(amount):
             if i >= len(location_set):
