@@ -1,9 +1,8 @@
 """Unit tests for the Preprocessing.py file."""
 import pytest
-from Preprocessing import Preprocessing, make_database
-import sqlite3
+from Preprocessing import Preprocessing
 
-test_data = Preprocessing("test.csv")
+test_data = Preprocessing("test_preprocess.csv")
 
 
 def test_drop_columns() -> None:
