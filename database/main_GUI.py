@@ -1,5 +1,6 @@
+"""GUI for the database project."""
 import tkinter as tk
-from tryout import Flu_info
+from get_info import Flu_info
 
 root = tk.Tk()
 
@@ -44,7 +45,8 @@ clean_button.grid(row=7, columnspan=2)
 displaybox.grid(row=8, columnspan=2)
 
 
-def format_output(result: list):
+def format_output(result: list[tuple[str]]) -> str:
+    """Format the output."""
     count = 1
 
     s = ""
@@ -54,23 +56,25 @@ def format_output(result: list):
         s += "\tProvider Name: " + info[0] + "\n"
         s += (
             "\tAddress: "
-            + info[1]
+            + info[1]  # type: ignore
             + ", "
-            + info[2]
+            + info[2]  # type: ignore
             + ", "
-            + info[3]
+            + info[3]  # type: ignore
             + ", "
-            + info[4]
+            + info[4]  # type: ignore
             + "\n"
         )
-        s += "\tWebsite: " + info[5] + "\n"
-        s += "\tLatitude: " + info[6] + "\tLongitude: " + info[7] + "\n"
+        s += "\tWebsite: " + info[5] + "\n"  # type: ignore
+        s += "\tLatitude: " + info[6] + "\t"  # type: ignore
+        s += "Longitude: " + info[7] + "\n"  # type: ignore
         count += 1
 
     return s
 
 
-def display_text():
+def display_text() -> None:
+    """Display the text."""
     lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
     text0 = clicked.get()
     text1 = textbox1.get()
@@ -86,18 +90,25 @@ def display_text():
     elif len(text2) == 0 and len(text1) == 0:
         ll = format_output(lab_info.getLocationByVaccineName(text0))
     elif len(text2) != 0 and len(text1) != 0:
-        ll = format_output(lab_info.getLimitedLocationByCityAndVaccineName(text1, text0, int(text2)))
+        ll = format_output(
+            lab_info.getLimitedLocationByCityAndVaccineName(
+                text1, text0, int(text2)
+            )
+        )
     elif len(text1) == 0:
         ll = format_output(
             lab_info.getLimitedLocationByVaccineName(text0, int(text2))
         )
     else:
-        ll = format_output(lab_info.getLocationByCityAndVaccineName(text1, text0))
+        ll = format_output(
+            lab_info.getLocationByCityAndVaccineName(text1, text0)
+        )
 
     displaybox.insert(tk.END, ll)
 
 
-def clean_up():
+def clean_up() -> None:
+    """Clean up the text."""
     clicked.set("Choose Vaccine")
     textbox1.delete(0, tk.END)
     textbox2.delete(0, tk.END)

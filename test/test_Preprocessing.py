@@ -1,4 +1,4 @@
-"""Unit tests for the Preprocessing.py file"""
+"""Unit tests for the Preprocessing.py file."""
 import pytest
 from Preprocessing import Preprocessing, make_database
 import sqlite3
@@ -32,9 +32,12 @@ def test_combine_opening_hours() -> None:
     test_data.combine_opening_hours()
     assert (
         test_data.data["opening_hours"][0]
-        == "sunday_hours:  Not Available  |  monday_hours:  8:00 AM - 5:00 PM  |  "
-        + "tuesday_hours:  8:00 AM - 5:00 PM  |  wednesday_hours:  8:00 AM - 5:00 PM  |  "
-        + "thursday_hours:  8:00 AM - 5:00 PM  |  friday_hours:  8:00 AM - 5:00 PM  |  "
+        == "sunday_hours:  Not Available  |  "
+        "monday_hours:  8:00 AM - 5:00 PM  |  "
+        + "tuesday_hours:  8:00 AM - 5:00 PM  |  "
+        "wednesday_hours:  8:00 AM - 5:00 PM  |  "
+        + "thursday_hours:  8:00 AM - 5:00 PM  |  "
+        "friday_hours:  8:00 AM - 5:00 PM  |  "
         + "saturday_hours:  Not Available"
     )
 
