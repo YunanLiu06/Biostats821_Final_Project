@@ -5,28 +5,30 @@ root = tk.Tk()
 
 tk.Label(root, text="Vaccine Name: ").grid(row=0)
 tk.Label(root, text="Optional Filters: ").grid(row=1, columnspan=2)
-tk.Label(root, text="Number of locations needed: ").grid(row=2)
-tk.Label(root, text="Latitude of your location: ").grid(row=3)
-tk.Label(root, text="Longitude of your location: ").grid(row=4)
+tk.Label(root, text="City of your location: ").grid(row=2)
+tk.Label(root, text="Number of locations needed: ").grid(row=3)
+tk.Label(root, text="Latitude of your location: ").grid(row=4)
+tk.Label(root, text="Longitude of your location: ").grid(row=5)
 
 options = [
     "Flu Shot",
     "Flu Shot (Egg free)",
     "Flu Shot (65+, high-dose or adjuvanted)",
-    "Flu Nasal Spray"
+    "Flu Nasal Spray",
 ]
 clicked = tk.StringVar()
 clicked.set("Choose Vaccine")
-drop = tk.OptionMenu( root , clicked , *options )
+drop = tk.OptionMenu(root, clicked, *options)
 
-# textbox1 = tk.Entry(root)
+textbox1 = tk.Entry(root)
 textbox2 = tk.Entry(root)
 textbox3 = tk.Entry(root)
 textbox4 = tk.Entry(root)
 drop.grid(row=0, column=1)
-textbox2.grid(row=2, column=1)
-textbox3.grid(row=3, column=1)
-textbox4.grid(row=4, column=1)
+textbox1.grid(row=2, column=1)
+textbox2.grid(row=3, column=1)
+textbox3.grid(row=4, column=1)
+textbox4.grid(row=5, column=1)
 
 button = tk.Button(
     root, text="Get Information", command=lambda: display_text()
@@ -37,35 +39,67 @@ clean_button = tk.Button(
 
 displaybox = tk.Text(root)
 
-button.grid(row=5, columnspan=2)
-clean_button.grid(row=6, columnspan=2)
-displaybox.grid(row=7, columnspan=2)
+button.grid(row=6, columnspan=2)
+clean_button.grid(row=7, columnspan=2)
+displaybox.grid(row=8, columnspan=2)
+
+
+def format_output(result: list):
+    count = 1
+
+    s = ""
+
+    for info in result:
+        s += "Option " + str(count) + ":\n"
+        s += "\tProvider Name: " + info[0] + "\n"
+        s += (
+            "\tAddress: "
+            + info[1]
+            + ", "
+            + info[2]
+            + ", "
+            + info[3]
+            + ", "
+            + info[4]
+            + "\n"
+        )
+        s += "\tWebsite: " + info[5] + "\n"
+        s += "\tLatitude: " + info[6] + "\tLongitude: " + info[7] + "\n"
+        count += 1
+
+    return s
 
 
 def display_text():
     lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
-    text1 = clicked.get()
+    text0 = clicked.get()
+    text1 = textbox1.get()
     text2 = textbox2.get()
     text3 = textbox3.get()
     text4 = textbox4.get()
-    if text1 == "Choose Vaccine":
+    if text0 == "Choose Vaccine":
         ll = "Please select the vaccine you want to check."
-    elif len(text2) == 0:
-        ll = lab_info.getLocationByVaccineName(text1)
-        # ll = "1"
     elif len(text3) != 0 and len(text4) != 0:
-        ll = lab_info.getInfoByPosition(text3, text4)
-        # ll = "2"
+        ll = format_output(lab_info.getInfoByPosition(text3, text4, text0))
     elif len(text3) != 0 or len(text4) != 0:
         ll = "Please enter the full location info!"
+    elif len(text2) == 0 and len(text1) == 0:
+        ll = format_output(lab_info.getLocationByVaccineName(text0))
+    elif len(text2) != 0 and len(text1) != 0:
+        ll = format_output(lab_info.getLimitedLocationByCityAndVaccineName(text1, text0, int(text2)))
+    elif len(text1) == 0:
+        ll = format_output(
+            lab_info.getLimitedLocationByVaccineName(text0, int(text2))
+        )
     else:
-        ll = lab_info.getLimitedLocationByVaccineName(text1, int(text2))
-        # ll = "3"
+        ll = format_output(lab_info.getLocationByCityAndVaccineName(text1, text0))
+
     displaybox.insert(tk.END, ll)
 
 
 def clean_up():
     clicked.set("Choose Vaccine")
+    textbox1.delete(0, tk.END)
     textbox2.delete(0, tk.END)
     textbox3.delete(0, tk.END)
     textbox4.delete(0, tk.END)
