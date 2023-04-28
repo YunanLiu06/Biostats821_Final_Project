@@ -1,5 +1,5 @@
 import tkinter as tk
-from tryout import Flu_info
+from get_info import Flu_info
 
 root = tk.Tk()
 
