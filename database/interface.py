@@ -43,7 +43,7 @@ displaybox.grid(row=7, columnspan=2)
 
 
 def display_text():
-    # lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
+    lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
     text1 = clicked.get()
     text2 = textbox2.get()
     text3 = textbox3.get()
@@ -51,16 +51,16 @@ def display_text():
     if text1 == "Choose Vaccine":
         ll = "Please select the vaccine you want to check."
     elif len(text2) == 0:
-        # ll = lab_info.getLocationByVaccineName(text1)
-        ll = "1"
+        ll = lab_info.getLocationByVaccineName(text1)
+        # ll = "1"
     elif len(text3) != 0 and len(text4) != 0:
-        # ll = lab_info.getInfoByPosition(text3, text4)
-        ll = "2"
+        ll = lab_info.getInfoByPosition(text3, text4)
+        # ll = "2"
     elif len(text3) != 0 or len(text4) != 0:
         ll = "Please enter the full location info!"
     else:
-        # ll = lab_info.getLimitedLocationByVaccineName(text1, int(text2))
-        ll = "3"
+        ll = lab_info.getLimitedLocationByVaccineName(text1, int(text2))
+        # ll = "3"
     displaybox.insert(tk.END, ll)
 
 
