@@ -27,21 +27,22 @@ clean_button.grid(row = 5, columnspan=2)
 displaybox.grid(row = 6, columnspan=2)
 
 def display_text():
-    # lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
+    lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
     text1 = textbox1.get()
     text2 = textbox2.get()
     text3 = textbox3.get()
     text4 = textbox4.get()
     if len(text2) == 0 :
-        # ll = lab_info.getLocationByVaccineName(text1)
-        ll = "a"
+        ll = lab_info.getLocationByVaccineName(text1)
+        # ll = "a"
     elif len(text3) != 0 and len(text4) != 0:
-        ll = "d"
+        ll = lab_info.getInfoByPosition(text3, text4)
+        # ll = "d"
     elif len(text3) != 0 or len(text4) != 0:
         ll = "Please enter the full location info!"
     else:
-        # ll = lab_info.getLimitedLocationByVaccineName(text1, int(text2))
-        ll = "b"
+        ll = lab_info.getLimitedLocationByVaccineName(text1, int(text2))
+        # ll = "b"
     displaybox.insert(tk.END, ll)
 
 def clean_up():
