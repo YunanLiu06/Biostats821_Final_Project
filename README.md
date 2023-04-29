@@ -1,11 +1,17 @@
 # A Flu Vaccinating Provider Data Library
-This is the final project for Biostats821.
+
+[![checks](https://github.com/XquanL/Biostats821_Final_Project/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/XquanL/Biostats821_Final_Project/actions/workflows/checks.yml)
+
+This is the final project for Biostats821. 
+
+Team members: Xiaoquan Liu, Yuanjing Zhu, Yunan Liu
 
 # Introduction
 In the wake of the COVID-19 pandemic, the importance of vaccinations has been highlighted more than ever before. While much of the attention has been focused on the development and distribution of COVID-19 vaccines, it is important not to forget the importance of other vaccinations, such as the flu vaccine. In order to ensure that individuals have access to the flu vaccine, it is important to have a comprehensive list of flu vaccinating providers.
 
 Creating a flu vaccine provider data library is one way to achieve this goal. In this project, we first utilized data from the CDC, including provider locations, websites, phone numbers, and so on, to create a database of flu vaccination providers in North Carolina. We then developed a user-friendly GUI for the data library, allowing people to easily access information on flu vaccination availability and provider information. By compiling this information into one place, individuals would be able to easily find providers near them, and healthcare organizations would have a more streamlined way to communicate information about the flu vaccine to their patients.
 
+# GUI
 #### In the terminal, run `python database/main_GUI.py` to open the GUI.
 <p align="center">
   <img width="500" height="200" src="https://user-images.githubusercontent.com/112578003/235311464-5c72362e-fa30-42f9-b937-8c77ac1a4d7b.png"
