@@ -75,7 +75,7 @@ def format_output(result: list[tuple[str]]) -> str:
 
 def display_text() -> None:
     """Display the text."""
-    lab_info = Flu_info("Flu_Vaccines_Provider_NC.db")
+    lab_info = Flu_info("database/Flu_Vaccines_Provider_NC.db")
     text0 = clicked.get()
     text1 = textbox1.get()
     text2 = textbox2.get()
